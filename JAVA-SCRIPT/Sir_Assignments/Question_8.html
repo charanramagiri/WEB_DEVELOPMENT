@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM List Interaction</title>
+  <!-- <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background: #f0f0f0;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    li:hover {
+      background: #dcdcdc;
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style> -->
+</head>
+<body>
+  <div id="container">
+    <h1>My List</h1>
+    <ul id="myList">
+      <li class="item">Item 1</li>
+      <li class="item">Item 2</li>
+      <li class="item">Item 3</li>
+    </ul>
+    <button id="addButton">Add Item</button>
+  </div>
+
+  <script>
+    const ul = document.getElementById("myList");
+    const button = document.getElementById("addButton");
+
+    // Add new list item on button click
+    button.addEventListener("click", function () {
+      const newItem = document.createElement("li");
+      newItem.textContent = "New Item";
+      newItem.classList.add("item");
+      ul.appendChild(newItem);
+    });
+
+    // Remove list item on click (event delegation)
+    ul.addEventListener("click", function (event) {
+      if (event.target.tagName === "LI") {
+        event.target.remove();
+      }
+    });
+  </script>
+</body>
+</html>
