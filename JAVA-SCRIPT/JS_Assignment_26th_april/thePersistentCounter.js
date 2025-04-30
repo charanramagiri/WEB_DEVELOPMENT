@@ -13,3 +13,9 @@ console.log(counterA()); // Expected: 2, Actual: ?
 
 const counterB = createCounter();
 console.log(counterB()); // Expected: 1 (independent counter), Actual: ?
+
+
+
+/* A closure is a feature in JavaScript where:
+ An inner function has access to variables from its outer (enclosing) function’s scope even after the outer function has finished executing.
+ */
