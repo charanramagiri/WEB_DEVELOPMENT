@@ -1,12 +1,14 @@
 // Original Code (Incorrect)
 
-function delayedGreeter(names) {
-    for (var i = 0; i < names.length; i++) {
-      setTimeout(function () {
-        console.log(`Hello, ${names[i]}!`);
-      }, i * 1000);
-    }
-  }
+// function delayedGreeter(names) {
+//     for (var i = 0; i < names.length; i++) {
+//       setTimeout(function () {
+//         console.log(`Hello, ${names[i]}!`);
+//       }, i * 1000);
+//     }
+//   }
+//   delayedGreeter(['Alice', 'Bob', 'Charlie']);
+
 
     /*Issue: All outputs show undefined or last name because var is function-scoped.
     Hello, undefined!
@@ -25,15 +27,24 @@ function delayedGreeter(names) {
 
 //   Corrected with IIFE
 
-function delayedGreeter(names) {
-    for (var i = 0; i < names.length; i++) {
-      (function (index) {
-        setTimeout(function () {
-          console.log(`Hello, ${names[index]}!`);
-        }, index * 1000);
-      })(i);
-    }
-  }
+// function delayedGreeter(names) {
+//     for (var i = 0; i < names.length; i++) {
+//       (function (index) {
+//         setTimeout(function () {
+//           console.log(`Hello, ${names[index]}!`);
+//         }, index * 1000);
+//       })(i);
+//     }
+//   }
+//   delayedGreeter(['Alice', 'Bob', 'Charlie']);
+
+  /**
+Explanation of the Correction:
+IIFE Creates New Scope: The (function(index) { ... })(i) creates a new function scope for each iteration of the for loop.
+index Parameter: The current value of i is passed as an argument to the IIFE, and it becomes the index parameter within that IIFE's scope.
+Closure over index: The anonymous function inside setTimeout now closes over the index variable of the IIFE's scope, which holds the specific value of i from that particular iteration.
+Alternatively (and more modernly), you can use let instead of var:
+   */
 
 // Corrected with let
 
@@ -44,6 +55,7 @@ function delayedGreeter(names) {
       }, i * 1000);
     }
   }
+  delayedGreeter(['Alice', 'Bob', 'Charlie']);
   /*
     Each closure now "remembers" the correct value of i for that iteration.
     IIFE creates a new function scope.
